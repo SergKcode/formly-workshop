@@ -40,7 +40,6 @@ export function adultValidator(control: AbstractControl): ValidationErrors | nul
 
     FormlyModule.forRoot({
       /* Añade aqui todos los modulos que necesites */
-      types: [{ name: 'stepper', component: FormlyFieldStepper, wrappers: [] }],
       validationMessages: [
         { name: 'required', message: 'This field is required' },
         { name: 'adult', message: isAdultValidatorMessage },

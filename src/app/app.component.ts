@@ -18,17 +18,19 @@ export class AppComponent implements OnInit {
 
   form = new FormGroup({})
   model: any = {}
-  options: FormlyFormOptions = {}
+  options: FormlyFormOptions = {
+    formState: {
+      isData: false
+    }
+  }
 
-  scibForm = this._formBuilder.group({
-    scibGlobal: false,
-    language: 'en',
+  dataForm = this._formBuilder.group({
+    isData: false,
 
   })
 
   fields: FormlyFieldConfig[] = [
     {
-      type: 'stepper',
       fieldGroup: [
         {
           props: { label: 'Test' },
@@ -44,8 +46,24 @@ export class AppComponent implements OnInit {
                 label: "Edad",
                 // required: true
               },
+            },
+            // 
+            //  {
+            //  key: "brands",
+            //   type: "input",
+            //   props: {
+            //     label: 'Brands'
+            //   },
+            //   expressions: {
+            //      className: (field: FormlyFieldConfig) => {
+            //       return !!field?.options?.formState.isData ? 'text-primary' : 'text-warning';
+            //     },
+            //   hide: (field: FormlyFieldConfig) => {
+            //      return !!field?.options?.formState.isData
+            //    }
+            //   }
 
-            }
+            //    }
 
             // {
             //   key: "drink",
@@ -86,7 +104,8 @@ export class AppComponent implements OnInit {
   }
 
   private _getIsScibGlobal() {
-    this.scibForm.valueChanges.subscribe((values) => {
+    this.dataForm.valueChanges.subscribe((values) => {
+      this.options.formState.isData = values.isData
       // Añade aqui el codigo necesario para poder hacer dinamicos los campos que requieren el valor de SCIB y el idioma
     })
   }
