@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     { value: 'es', viewValue: 'Es' },
   ]
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder) { }
 
   form = new FormGroup({})
   model: any = {}
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   scibForm = this._formBuilder.group({
     scibGlobal: false,
     language: 'en',
+
   })
 
   fields: FormlyFieldConfig[] = [
@@ -30,35 +31,46 @@ export class AppComponent implements OnInit {
       type: 'stepper',
       fieldGroup: [
         {
-          props: { label: 'Reporter' },
+          props: { label: 'Test' },
           fieldGroup: [
-            //Configura aqui la seccion 1
+
+            {
+              key: "age",
+              type: "input",
+              //validators: {
+              //  validation: ['isAdult']
+              // },
+              props: {
+                label: "Edad",
+                // required: true
+              },
+
+            }
+
+            // {
+            //   key: "drink",
+            //   type: "input",
+            //validators: {
+            //  validation: ['isAdult']
+            // },
+            //    props: {
+            //     label: "Botella de alcohol",
+            // required: true
+            //    },
+            //   expressions: {
+            //className: (field: FormlyFieldConfig) => {
+            //   return this._getIfCarBrandExist() ? 'input-red' : 'input-green';
+            // },
+            //hide: (field: FormlyFieldConfig) => {
+            //   return Number(field.model.age) < 18 || !field.model.age
+            //  },
+            //  'props.label': (field: FormlyFieldConfig) => {
+            //     return (Number(field.model.age) < 18 || !field.model.age) ? 'Botella de agua' : 'Botella de alcohol'
+            //  },
+            // }
+            // }
           ],
-        },
-        {
-          props: { label: 'Detail' },
-          fieldGroup: [
-            //Configura aqui la seccion 2
-          ],
-        },
-        {
-          props: { label: 'Entorno' },
-          fieldGroup: [
-            //Configura aqui la seccion 3
-          ],
-        },
-        {
-          props: { label: 'Prioridad' },
-          fieldGroup: [
-            //Configura aqui la seccion 4
-          ],
-        },
-        {
-          props: { label: 'Info adicional' },
-          fieldGroup: [
-            //Configura aqui la seccion 5
-          ],
-        },
+        }
       ],
     },
   ]
@@ -69,6 +81,7 @@ export class AppComponent implements OnInit {
   }
 
   reset() {
+
     //Añade el codigo necesario para resetear el formulario
   }
 
@@ -80,9 +93,12 @@ export class AppComponent implements OnInit {
 
   private _printFormValues() {
     this.form.valueChanges.subscribe((formValues) => {
-      this.formValuesJson = JSON.stringify(formValues, null, 2) 
+      this.formValuesJson = JSON.stringify(formValues, null, 2) // Guárdalo como string bonito
     })
   }
+
+
+
 
   submit() {
     alert(JSON.stringify(this.model))
