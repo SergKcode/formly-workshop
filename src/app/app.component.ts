@@ -45,6 +45,54 @@ export class AppComponent implements OnInit {
           props: { label: 'Entorno' },
           fieldGroup: [
             //Configura aqui la seccion 3
+    
+            {         
+              key: 'aplication',
+              type: 'input',         
+              props: {           
+                label: 'Aplicación',           
+                required: true      
+              }       
+            },
+            {
+              key: 'enviroment',
+              type: 'select',
+              props: {
+                label: 'Entorno',
+                required: true,
+                options:[
+                  {label:'PRO', id : '1', value : 'PRO'},
+                  {label:'PRE', id : '2', value : 'PRE'},
+                  {label:'DEV', id : '3', value : 'DEV'}
+                ]
+              },
+              
+            },
+            {
+              key: 'category',
+              type: 'select',
+              props: {
+                label: 'Categoría',
+                disabled: true,
+                options:[
+                {label:'PRO', id : '1', value : 'PRO'},
+                {label:'PRE', id : '2', value : 'PRE'},
+                {label:'DEV', id : '3', value : 'DEV'}
+              ]
+              },
+              expressions: {
+                "props.disabled": (field: FormlyFieldConfig)=>{
+                  if(this.form.get('enviroment')?.value === undefined){
+                    return false
+                  }else{}
+                    return true
+                }
+                }
+              
+              
+            }
+            
+                      
           ],
         },
         {
